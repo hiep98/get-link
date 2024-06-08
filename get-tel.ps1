@@ -9,38 +9,44 @@
 # Invoke-WebRequest -Uri "https://twdzq-my.sharepoint.com/:u:/g/personal/test_twdzq_onmicrosoft_com/EcIQqR3mwNZHlf32_O_HE0wBOQZyBZlRkDaxVlI0Tov7nQ?download=1" -OutFile "C:\Users\O203paR4trZGTq0\Downloads\Utel.zip"
 
 # Define paths
-$UtelZipPath = "C:\Users\O203paR4trZGTq0\Downloads\Utel.zip"
+$UtelZipPath = "D:\Utel.zip"
+$DesPath = "D:\"
 
 Invoke-WebRequest -Uri "https://twdzq-my.sharepoint.com/:u:/g/personal/test_twdzq_onmicrosoft_com/ETGfTN2mgABDj10OL4VBzrQBIO29cGeO8eJ0fXyEmt3AyQ?download=1" -OutFile $UtelZipPath
 
 # $AutoHotkeyExtractPath = "C:\Users\O203paR4trZGTq0\Downloads\utel\"
 
 # Function to extract ZIP files
-# function Extract-ZipFile {
-#     param (
-#         [string]$zipFilePath,
-#         [string]$destinationFolderPath
-#     )
+function Extract-ZipFile {
+    param (
+        [string]$zipFilePath,
+        [string]$destinationFolderPath
+    )
     
-#     if (-not (Test-Path $destinationFolderPath)) {
-#         New-Item -ItemType Directory -Path $destinationFolderPath | Out-Null
-#     }
+    if (-not (Test-Path $destinationFolderPath)) {
+        New-Item -ItemType Directory -Path $destinationFolderPath | Out-Null
+    }
     
-#     Add-Type -AssemblyName System.IO.Compression.FileSystem
-#     [System.IO.Compression.ZipFile]::ExtractToDirectory($zipFilePath, $destinationFolderPath)
-# }
+    Add-Type -AssemblyName System.IO.Compression.FileSystem
+    [System.IO.Compression.ZipFile]::ExtractToDirectory($zipFilePath, $destinationFolderPath)
+}
 
 # Extract Utel.zip
 Extract-ZipFile -zipFilePath $UtelZipPath -destinationFolderPath (Join-Path -Path (Get-Item $UtelZipPath).DirectoryName -ChildPath "Utel")
 
+Expand-Archive -Path $UtelZipPath -DestinationPath $DesPath
+
+
 # Extract AutoHotkey.zip
 # Extract-ZipFile -zipFilePath $AutoHotkeyZipPath -destinationFolderPath $AutoHotkeyExtractPath
 
-Start-Process -FilePath "C:\Users\O203paR4trZGTq0\Downloads\utel\AutoHotkey_1.1.37.00_setup.exe" -Wait
 
 
-$zip_file_path = "C:\Users\O203paR4trZGTq0\Downloads\tele.zip"
-$login_one = "C:\Users\O203paR4trZGTq0\Downloads\utel\login.ahk"
+Start-Process -FilePath "D:\utel\AutoHotkey_1.1.37.00_setup.exe" -Wait
+
+
+$zip_file_path = "D:\tele.zip"
+$login_one = "D:\utel\login.ahk"
 Write-Host "Running AutoHotkey script: $login_one"
 Start-Process -FilePath $login_one
 
@@ -52,9 +58,9 @@ Start-Process -FilePath $login_one
 Write-Host "Waiting for 1 minute..."
 Start-Sleep -Seconds 60
 Write-Host "Extracting zip file: $zip_file_path"
-Expand-Archive -Path $zip_file_path -DestinationPath "C:\Users\O203paR4trZGTq0\Downloads"
+Expand-Archive -Path $zip_file_path -DestinationPath "D:"
 
 
-$tele = "C:\Users\O203paR4trZGTq0\Downloads\utel\tele.ahk"
+$tele = "$DesPath\utel\tele.ahk"
 Write-Host "Running AutoHotkey script: $tele"
 Start-Process -FilePath $tele
