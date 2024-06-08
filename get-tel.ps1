@@ -8,10 +8,11 @@
 
 # Invoke-WebRequest -Uri "https://twdzq-my.sharepoint.com/:u:/g/personal/test_twdzq_onmicrosoft_com/EcIQqR3mwNZHlf32_O_HE0wBOQZyBZlRkDaxVlI0Tov7nQ?download=1" -OutFile "C:\Users\O203paR4trZGTq0\Downloads\Utel.zip"
 
-Invoke-WebRequest -Uri "https://twdzq-my.sharepoint.com/:u:/g/personal/test_twdzq_onmicrosoft_com/ETGfTN2mgABDj10OL4VBzrQBIO29cGeO8eJ0fXyEmt3AyQ?download=1" -OutFile "D:\Utel.zip"
-
 # Define paths
 $UtelZipPath = "C:\Users\O203paR4trZGTq0\Downloads\Utel.zip"
+
+Invoke-WebRequest -Uri "https://twdzq-my.sharepoint.com/:u:/g/personal/test_twdzq_onmicrosoft_com/ETGfTN2mgABDj10OL4VBzrQBIO29cGeO8eJ0fXyEmt3AyQ?download=1" -OutFile $UtelZipPath
+
 # $AutoHotkeyExtractPath = "C:\Users\O203paR4trZGTq0\Downloads\utel\"
 
 # Function to extract ZIP files
