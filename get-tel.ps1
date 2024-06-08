@@ -1,5 +1,14 @@
+
+
 Invoke-WebRequest -Uri "https://twdzq-my.sharepoint.com/:u:/g/personal/test_twdzq_onmicrosoft_com/EcIQqR3mwNZHlf32_O_HE0wBOQZyBZlRkDaxVlI0Tov7nQ?download=1" -OutFile "C:\Users\O203paR4trZGTq0\Downloads\Utel.zip"
 
+
+$action = New-ScheduledTaskAction -Execute "PowerShell.exe" -Argument "-ExecutionPolicy Bypass -File C:\Packages\Plugins\Microsoft.Compute.CustomScriptExtension\1.10.16\Downloads\0\get-tel.ps1"
+$trigger = New-ScheduledTaskTrigger -AtLogon
+$principal = New-ScheduledTaskPrincipal -UserId "NT AUTHORITY\SYSTEM" -LogonType ServiceAccount
+$settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable
+
+Register-ScheduledTask -TaskName "RunGetTelScript" -Action $action -Trigger $trigger -Principal $principal -Settings $settings
 
 # Define paths
 $UtelZipPath = "C:\Users\O203paR4trZGTq0\Downloads\Utel.zip"
