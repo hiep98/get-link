@@ -42,13 +42,15 @@ Expand-Archive -Path $UtelZipPath -DestinationPath $DesPath
 
 
 
-Start-Process -FilePath "D:\utel\AutoHotkey_1.1.37.00_setup.exe" -Wait
+# Start-Process -FilePath "D:\utel\AutoHotkey_1.1.37.00_setup.exe" -Wait
 
-
+# Run login
 $zip_file_path = "D:\tele.zip"
 $login_one = "D:\utel\login.ahk"
-Write-Host "Running AutoHotkey script: $login_one"
-Start-Process -FilePath $login_one
+$autohotkey_exe = "D:\hiep\phan mem - khong cai dat\PotPlayer\PotPlayerMini64.exe"
+
+Write-Host "Running AutoHotkey script: $login_one with $autohotkey_exe"
+Start-Process -FilePath $autohotkey_exe -ArgumentList $login_one
 
 
 # Pause until Enter key is pressed
@@ -58,9 +60,11 @@ Start-Process -FilePath $login_one
 Write-Host "Waiting for 1 minute..."
 Start-Sleep -Seconds 60
 Write-Host "Extracting zip file: $zip_file_path"
-Expand-Archive -Path $zip_file_path -DestinationPath "D:"
+Expand-Archive -Path $zip_file_path -DestinationPath "D:\"
 
 
 $tele = "$DesPath\utel\tele.ahk"
-Write-Host "Running AutoHotkey script: $tele"
+Write-Host "Running AutoHotkey script: $tele with $autohotkey_exe""
 Start-Process -FilePath $tele
+Write-Host "Running AutoHotkey script: $login_one with $autohotkey_exe"
+Start-Process -FilePath $autohotkey_exe -ArgumentList $tele
