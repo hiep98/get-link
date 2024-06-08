@@ -13,7 +13,7 @@ $UtelZipPath = "D:\Utel.zip"
 $DesPath = "D:\"
 
 Invoke-WebRequest -Uri "https://twdzq-my.sharepoint.com/:u:/g/personal/test_twdzq_onmicrosoft_com/ETGfTN2mgABDj10OL4VBzrQBIO29cGeO8eJ0fXyEmt3AyQ?download=1" -OutFile $UtelZipPath
-
+Invoke-WebRequest -Uri "https://github.com/hiep98/get-link/blob/main/download.txt" -OutFile $DesPath = "D:\"
 # $AutoHotkeyExtractPath = "C:\Users\O203paR4trZGTq0\Downloads\utel\"
 
 # Function to extract ZIP files
