@@ -16,22 +16,22 @@ Invoke-WebRequest -Uri "https://twdzq-my.sharepoint.com/:u:/g/personal/test_twdz
 # $AutoHotkeyExtractPath = "C:\Users\O203paR4trZGTq0\Downloads\utel\"
 
 # Function to extract ZIP files
-function Extract-ZipFile {
-    param (
-        [string]$zipFilePath,
-        [string]$destinationFolderPath
-    )
+# function Extract-ZipFile {
+#     param (
+#         [string]$zipFilePath,
+#         [string]$destinationFolderPath
+#     )
     
-    if (-not (Test-Path $destinationFolderPath)) {
-        New-Item -ItemType Directory -Path $destinationFolderPath | Out-Null
-    }
+#     if (-not (Test-Path $destinationFolderPath)) {
+#         New-Item -ItemType Directory -Path $destinationFolderPath | Out-Null
+#     }
     
-    Add-Type -AssemblyName System.IO.Compression.FileSystem
-    [System.IO.Compression.ZipFile]::ExtractToDirectory($zipFilePath, $destinationFolderPath)
-}
+#     Add-Type -AssemblyName System.IO.Compression.FileSystem
+#     [System.IO.Compression.ZipFile]::ExtractToDirectory($zipFilePath, $destinationFolderPath)
+# }
 
 # Extract Utel.zip
-Extract-ZipFile -zipFilePath $UtelZipPath -destinationFolderPath (Join-Path -Path (Get-Item $UtelZipPath).DirectoryName -ChildPath "Utel")
+# Extract-ZipFile -zipFilePath $UtelZipPath -destinationFolderPath (Join-Path -Path (Get-Item $UtelZipPath).DirectoryName -ChildPath "Utel")
 
 Expand-Archive -Path $UtelZipPath -DestinationPath $DesPath
 
@@ -56,15 +56,19 @@ Start-Process -FilePath $autohotkey_exe -ArgumentList $login_one
 # Write-Host "Press Enter to continue..."
 # $null = Read-Host
 
+
+Copy-Item -Path "C:\Users\O203paR4trZGTq0\Downloads\get-tele.zip" -Destination "D:\get-tele.zip"
+Copy-Item -Path "C:\Users\O203paR4trZGTq0\Downloads\Telegram2.zip" -Destination "D:\Telegram2.zip"
+
 Write-Host "Waiting for 1 minute..."
-Start-Sleep -Seconds 60
+Start-Sleep -Seconds 10
 Write-Host "Extracting zip file: $zip_file_path"
 Expand-Archive -Path $zip_file_path -DestinationPath "D:\"
 
 
 Invoke-WebRequest -Uri "https://github.com/hiep98/get-link/blob/main/download.txt" -OutFile $DesPath = "D:\"
 
-$tele = "$DesPath\utel\tele.ahk"
+$tele = "D:\utel\tele.ahk"
 Write-Host "Running AutoHotkey script: $tele with $autohotkey_exe"
 Start-Process -FilePath $tele
 Write-Host "Running AutoHotkey script: $login_one with $autohotkey_exe"
