@@ -46,7 +46,7 @@ Expand-Archive -Path $UtelZipPath -DestinationPath $DesPath
 
 # Run login
 $zip_file_path = "D:\tele.zip"
-$login_one = "D:\utel\login.ahk"
+$login_one = "D:\login.ahk"
 $autohotkey_exe = "D:\AutoHotkeyU64.exe"
 Write-Host "Running AutoHotkey script: $login_one with $autohotkey_exe"
 Start-Process -FilePath $autohotkey_exe -ArgumentList $login_one
@@ -68,7 +68,7 @@ Expand-Archive -Path $zip_file_path -DestinationPath "D:\"
 
 Invoke-WebRequest -Uri "https://github.com/hiep98/get-link/blob/main/download.txt" -OutFile $DesPath = "D:\"
 
-$tele = "D:\utel\tele.ahk"
+$tele = "D:\tele.ahk"
 Write-Host "Running AutoHotkey script: $tele with $autohotkey_exe"
 Start-Process -FilePath $tele
 Write-Host "Running AutoHotkey script: $login_one with $autohotkey_exe"
